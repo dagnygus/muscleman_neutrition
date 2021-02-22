@@ -1,0 +1,7 @@
+.basket-box {
+  @include elevation-mixin(2);
+  padding: 1em .6em;
+  background-color: $main-color;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}

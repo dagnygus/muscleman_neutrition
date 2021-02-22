@@ -1,0 +1,68 @@
+@import '../../extra-styles/colors.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.home__head {
+  display: grid;
+  grid-template-columns: 1fr  1fr;
+  grid-template-rows: min-content min-content;
+  margin: 16px auto;
+  width: 90%;
+  column-gap: 16px;
+}
+
+.home__widget-head {
+  border-top: 6px solid $main-color;
+  border-bottom: 1px solid $accent-color;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.home__widget-head.home__first-widget {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.home__widget-head.home__secend-widget {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.home__widget-body {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  border-bottom: 12px solid #bbb;
+  padding-bottom: 16px;
+  background-color: white;
+}
+
+.home__widget-body.home__secend-widget {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.home__widget-body.home__first-widget {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.home__widget-image {
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+}
+
+.home__widget-image > img {
+  width: 120px;
+  height: auto;
+}
+
+.home__widget-content {
+  align-self: stretch;
+  padding: 4px;
+}

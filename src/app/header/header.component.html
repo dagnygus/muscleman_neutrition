@@ -1,0 +1,28 @@
+<div class="flex justify-content-start align-items-center border-bottom-1px-accent-color">
+  <i class="fas fa-user-alt font-size-1c5em color-main-color"></i>
+  <p class="plain-text margin-left-2px cursor-pointer">Your Account</p>
+  <p class="plain-text cursor-pointer margin-left-1em">Currency</p>
+</div>
+<div class="flex justify-content-space-between align-items-center wrap border-bottom-1px-accent-color">
+  <div class="flex align-items-center">
+    <i class="fas fa-envelope font-size-1c5em color-main-color"></i>
+    <p class="plain-text margin-left-4px cursor-pointer">contact@muscleman.com</p>
+  </div>
+  <div class="basket-box flex align-items-center color-accent-color" style="align-self: stretch;">
+    <i class="fas fa-shopping-basket font-size-1c5em"></i><p class="plain-text margin-left-1em">0 items</p>
+  </div>
+</div>
+<div class="flex justify-content-center align-items-center column">
+  <img src="assets/images/muscleman_logo.png" class="header__logo">
+</div>
+<div class="header__footer">
+  <div class="search-input-group">
+    <input type="text" class="shearch-entry" placeholder="Search">
+    <button type="button" class="search-button btn-main"><i class="fas fa-search"></i></button>
+  </div>
+  <button type="button"
+          class="btn-main width-100prc font-size-1c5em"
+          (click)="onCategoriesButtonClick()">
+    <i class="fas fa-bars"></i> Categories
+  </button>
+</div>
