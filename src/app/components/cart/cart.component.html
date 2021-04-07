@@ -1,0 +1,30 @@
+<app-cart-modal #cartModal
+                (onDeleteClick)="cartStateManager.removeItemFromCart(cartModal.productId!)"
+                (onClearCartClick)="cartStateManager.clearCart()"></app-cart-modal>
+
+<div class="content-container">
+  <div class="flex justify-content-center align-items-center"
+       *ngIf="cartStateManager.state?.length === 0; else cartItemsTemplate">
+    <h2>Your cart is empty</h2>
+  </div>
+  <ng-template #cartItemsTemplate>
+    <div class="cart-container">
+      <div class="flex column align-items-streach gap-6px">
+        <app-cart-item *ngFor="let item of cartStateManager.state"
+                       [cartItem]="item"
+                       [cartItemChanged]="cartStateManager.cartItemChanged"
+                       (onIncreaseClick)="cartStateManager.increaseQuantityOfItem(item.id)"
+                       (onDecreaseClick)="cartStateManager.decreaseQuantityOfItem(item.id)"
+                       (onDeleteClick)="cartModal.productId = item.id;
+                                        cartModal.productName = item.name;
+                                        cartModal.open = true;
+                                        cartModal.markForCheckLocaly()"></app-cart-item>
+      </div>
+      <app-cart-panel [cartItems]="cartStateManager.state"
+                      [cartItemChanged]="cartStateManager.cartItemChanged"
+                      (onClearCartClick)="cartModal.clearCartMode = true;
+                                          cartModal.open = true;
+                                          cartModal.markForCheckLocaly()"></app-cart-panel>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,24 @@
+@import './colors.scss';
+
+.text-decoration-underline {
+  text-decoration: underline;
+  text-decoration-color: $main-color
+}
+
+.myscleman-contact-link {
+  text-decoration: underline $main-color;
+  color: $main-color;
+}
+
+.color-main-color {
+  color: $main-color;
+}
+
+.color-accent-color {
+  color: $accent-color
+}
+
+.plain-text {
+  margin: 0;
+  padding: 0;
+}

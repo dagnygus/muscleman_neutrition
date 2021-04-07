@@ -1,0 +1,251 @@
+@use '../../../extra-styles/elevation.mixins' as *;
+@use '../../../extra-styles/colors' as *;
+
+.product-placeholder {
+  height: calc(10% - 8px);
+  background-color: #efefef;
+  position: relative;
+}
+
+.product-placeholder-shine {
+  position: absolute;
+  top: 0;
+  left: -25%;
+  width: 20%;
+  height: 100%;
+  background-image: linear-gradient(to right, transparent, white, transparent);
+  animation: placeholder-shine-animation 800ms infinite;
+}
+
+.product-container {
+  display: grid;
+  gap: 6px;
+  grid-template-rows: repeat(8, auto);
+  @media (min-width: 26rem) {
+    grid-template-columns: auto auto;
+    grid-template-rows: repeat(12, auto);;
+  }
+  @media (min-width: 34rem) {
+    grid-template-columns: 3fr 2fr;
+  }
+  @media (min-width: 49rem) {
+    grid-template-columns: 2fr 3fr;
+  }
+  @media (min-width: 64rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.product-rating-container {
+  padding: 16px 0;
+  @media (min-width: 26rem) {
+    padding: 8px;
+    grid-column: 2 / span 1;
+    p {
+      margin-bottom: 6px;
+    }
+  }
+  @media (min-width: 34rem) {
+    padding: 0;
+    grid-column: 2 / span 1;
+  }
+}
+
+.product-rating > img {
+  width: 50px;
+  height: auto;
+  @media (min-width: 26rem) {
+    width: 30px;
+  }
+}
+
+.product-image-container {
+  @media (min-width: 26rem) {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+  }
+  @media (min-width: 34rem) {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 3;
+    align-self: center;
+  }
+}
+
+.product-image-frame {
+  padding: 12px;
+  border: 12px solid #efefef;
+  border-radius: 6px;
+  overflow: hidden;
+  @include elevation-mixin(3);
+  @media (min-width: 26rem) {
+    padding: 8px;
+  }
+}
+
+.product-image {
+  width: 100%;
+  padding-bottom: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-clip: border-box;
+  background-origin: border-box;
+}
+
+.product-name-container {
+  @media (min-width: 26rem) {
+    grid-column: 2 / span 1;
+  }
+  @media (min-width: 34rem) {
+    font-size: .8em;
+    h2 {
+      margin: 4px 0 8px 0;
+    }
+  }
+}
+
+.order-widget {
+  margin: 6px;
+  padding: 12px 4px;
+  border-radius: 16px;
+  font-size: 1.25em;
+  background-color: #efefef;
+  @include elevation-mixin(2);
+  @media (min-width: 26rem) {
+    grid-column: 1 / span 2;
+    margin: 16px;
+  }
+  @media (min-width: 34rem) {
+    grid-column: 2 / span 1;
+    margin: 0px 6px 0 6px;
+    font-size: 0.8em;
+  }
+  @media (min-width: 49rem) {
+    max-width: 320px;
+    justify-self: center;
+  }
+}
+
+.order-widget-grid {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 8px;
+  column-gap: 4px;
+}
+
+.product-price-container {
+  grid-row: 1 / span 1;
+  grid-column: 1 / -1;
+  font-size: 1.5em;
+  justify-self: center;
+}
+
+.order-widget-grid > button.add-button,
+.order-widget-grid > button.substract-button {
+  background-color: $main-color;
+  color: white;
+  padding: 4px;
+  border: none;
+  @include elevation-mixin(2);
+}
+
+button.add-button {
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 1;
+}
+
+button.substract-button {
+  grid-row: 3 / span 1;
+  grid-column: 3 / span 1;
+}
+
+.order-widget-grid > label {
+  padding: 4px;
+  grid-row: 2 / span 1;
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.order-widget-grid > input[type=text] {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+  padding: 4px;
+  border: 1px solid black;
+  text-align: center;
+  min-width: 0;
+  @include elevation-mixin(2);
+}
+
+.add-to-cart-button {
+  grid-row: 4 / span 1;
+  grid-column: 1 / -1;
+  background-color: $main-color;
+  padding: 6px 0;
+  border: 2px solid $accent-color;
+  border-radius: 6px;
+  color: $accent-color;
+  @include elevation-mixin(2);
+}
+
+.product-description-container {
+  @media (min-width: 26rem) {
+    grid-column: 1 / -1;
+  }
+}
+
+.product-ingredients-container {
+  @media (min-width: 26rem) {
+    grid-column: 1 / -1;
+  }
+}
+
+.product-actions {
+  @media (min-width: 26rem) {
+    grid-column: 1 / -1;
+  }
+}
+
+.product-description-container > p {
+  line-height: 1.4em;
+}
+
+.product-ingredients-container > ul {
+  padding: 0;
+  font-size: 1.1em;
+}
+
+.product-ingredients-container > ul > li {
+  margin: 6px 0;
+}
+
+.product-actions > ul {
+  list-style: none;
+  margin: 16px 0 0 0;
+  padding: 0;
+}
+
+.product-actions > ul > li:nth-of-type(odd) {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.product-actions > ul > li:nth-of-type(even) {
+  margin-bottom: 1.3em;
+}
+
+@keyframes placeholder-shine-animation {
+  0% {
+    left: -25%;
+  }
+  20% {
+    left: -25%;
+  }
+  80% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

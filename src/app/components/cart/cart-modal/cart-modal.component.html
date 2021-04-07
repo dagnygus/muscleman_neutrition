@@ -1,0 +1,26 @@
+<div class="cart-modal__modal flex column align-items-streach">
+  <div class="cart-modal__header text-align-center">
+    <h1>WARNING</h1>
+  </div>
+  <div class="cart-modal__body">
+    <p class="plain-text" *ngIf="!clearCartMode; else clearCartTemplate">
+      Are you sure you want to remove {{ productName }}
+      from your cart?
+    </p>
+    <ng-template #clearCartTemplate>
+      <p class="plain-text">
+        Are you sure you want to remove all items from
+        from your cart?
+      </p>
+    </ng-template>
+  </div>
+  <div class="cart-item__footer">
+    <button class="cart-item__delete-button"
+            (click)="!clearCartMode ? $any(this)._onDeleteClick.emit(productId)
+                                    : $any(this)._onClearCartClick.emit();
+                     open = false;">
+      <i class="fas fa-trash"></i> Yes
+    </button>
+    <button (click)="open = false;">No</button>
+  </div>
+</div>

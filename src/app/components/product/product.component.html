@@ -1,0 +1,150 @@
+<app-product-modal #productModal></app-product-modal>
+
+<div class="content-container flex column align-items-streach height-100vh"
+     style="gap: 16px; padding: 8px 16px;"
+     *ngIf="singleProductStateManager.statePending">
+  <div class="product-placeholder" *dnFor="let index from 1 to 10">
+    <div class="product-placeholder-shine"></div>
+  </div>
+</div>
+
+<div class="content-container product-container"
+     *ngIf="singleProductStateManager.stateInitialized &&
+            !singleProductStateManager.statePending &&
+            singleProductStateManager.state">
+    <div class="product-rating-container flex align-items-center column">
+      <p>Average product rating:</p>
+      <div class="product-rating">
+        <img *ngIf="singleProductStateManager.state!.rating === 0"
+              src="assets/images/rating_star_empty.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 0 && singleProductStateManager.state!.rating <= 0.5"
+              src="assets/images/rating_star_half.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 0.5"
+              src="assets/images/rating_star_full.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating <= 1"
+              src="assets/images/rating_star_empty.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 1 && singleProductStateManager.state!.rating <= 1.5"
+              src="assets/images/rating_star_half.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 1.5"
+              src="assets/images/rating_star_full.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating <= 2"
+              src="assets/images/rating_star_empty.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 2 && singleProductStateManager.state!.rating <= 2.5"
+              src="assets/images/rating_star_half.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 2.5"
+              src="assets/images/rating_star_full.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating <= 3"
+              src="assets/images/rating_star_empty.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 3 && singleProductStateManager.state!.rating <= 3.5"
+              src="assets/images/rating_star_half.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 3.5"
+              src="assets/images/rating_star_full.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating <= 4"
+              src="assets/images/rating_star_empty.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 4 && singleProductStateManager.state!.rating <= 4.5"
+              src="assets/images/rating_star_half.png"
+              alt="rating_star">
+        <img *ngIf="singleProductStateManager.state!.rating > 4.5"
+              src="assets/images/rating_star_full.png"
+              alt="rating_star">
+      </div>
+    </div>
+    <div class="product-image-container">
+      <div class="product-image-frame expand flex align-items-center justify-content-center">
+        <div iv class="product-image" [style.background-image]="'url(' + singleProductStateManager.state?.imageUrl + ')'"></div>
+      </div>
+    </div>
+    <div class="product-name-container text-align-center">
+      <h2>{{ singleProductStateManager.state?.name }}</h2>
+    </div>
+    <div class="order-widget">
+      <div class="order-widget-grid">
+        <div class="product-price-container">
+          <p class="plain-text">Price : {{ singleProductStateManager.state?.price }}</p>
+        </div>
+        <label for="quantity">Quantity</label>
+        <button class="add-button cursor-pointer"
+                (click)="cartStateManager.increaseQuantity();
+                         markForCheckLocaly()">
+          <i class="fas fa-plus"></i>
+        </button>
+        <input type="text"
+               name="quantity"
+               mask="99"
+               [(ngModel)]="cartStateManager.selectedProduct!.quantity"
+               [allowNegativeNumbers]="false"
+               readonly>
+        <button class="substract-button cursor-pointer"
+                (click)="cartStateManager.decraseQuantity();
+                         markForCheckLocaly()">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button class="add-to-cart-button cursor-pointer"
+                (click)="productModal.open = true;
+                         cartStateManager.addToCart()">
+          Add to cart <i class="fas fa-shopping-basket"></i>
+        </button>
+      </div>
+    </div>
+    <div class="product-description-container">
+      <h3 class="text-align-center">Description</h3>
+      <p>{{ singleProductStateManager.state?.description }}</p>
+    </div>
+    <div class="product-ingredients-container flex column">
+      <h3 class="text-align-center">Ingredients</h3>
+      <ul class="align-self-center">
+        <li *ngFor="let item of singleProductStateManager.state?.ingredients">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+    <div class="product-actions">
+      <ul>
+        <li>
+          <i class="fas fa-check color-main-color"></i> Fast delivery in 24 hours
+        </li>
+        <li>
+          We deliver parcels in Poland by DPD, UPS and Inpost courier.
+        </li>
+        <li>
+          <i class="fas fa-check color-main-color"></i> Delivery to Parcel Lockers
+        </li>
+        <li>
+          If you do not want the parcel to be delivered to your home address, we can send it
+          to a selected parcel locker in your area.
+        </li>
+        <li>
+          <i class="fas fa-check color-main-color"></i> International shipping
+        </li>
+        <li>
+          We deliver orders throughout Europe. We send shipments via DPD and UPS courier.
+        </li>
+        <li>
+          <i class="fas fa-check color-main-color"></i> Various forms of payment
+        </li>
+        <li>
+          You can pay for the order to the courier in cash or by card upon delivery,
+          or pay for it in advance by a standard bank transfer.
+        </li>
+        <li>
+          <i class="fas fa-check color-main-color"></i> Discreet shipping
+        </li>
+        <li>
+          We pack parcels in unmarked boxes, so no one will know what's inside your package.
+        </li>
+      </ul>
+    </div>
+</div>

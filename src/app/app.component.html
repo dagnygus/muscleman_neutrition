@@ -1,12 +1,18 @@
-<ng-container [dnngListenTo]="sideDrawer.openChange" dnngRouteComponent>
+<ng-container [dnngListenTo]="sideDrawer.openChange"
+              dnngRouteComponent>
   <main class="expand layout">
-    <header class="block border-bottom-3px-main-color padding-box">
+    <header id="main_header" class="block border-bottom-3px-main-color padding-box">
       <app-header (categoryButtonClick)="sideDrawer.open = true;"></app-header>
     </header>
     <div class="sidedrawer-backdrop"
          [class.show]="sideDrawer.open"
          (click)="sideDrawer.open = false"></div>
     <app-sidedrawer #sideDrawer></app-sidedrawer>
-    <router-outlet></router-outlet>
+    <div class="router-outlet-container">
+      <router-outlet></router-outlet>
+    </div>
+    <footer class="expand block">
+      <app-footer></app-footer>
+    </footer>
   </main>
 </ng-container>

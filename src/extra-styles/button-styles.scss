@@ -1,0 +1,55 @@
+@use './elevation.mixins' as *;
+@use './colors.scss' as *;
+
+.btn-link {
+  background-color: transparent;
+  border: none;
+}
+
+.btn-main {
+  background-color: $main-color;
+  border: 2px solid darken($main-color, 7%);
+  padding: .25em .6em;
+  color: white;
+  border-radius: 0.4em;
+  cursor: pointer;
+  @include elevation-mixin(2)
+}
+
+.btn-main:disabled {
+  background-color: grey;
+  border: 2px solid darken(grey, 7%);
+  cursor: not-allowed;
+}
+
+.btn-main.danger {
+  background-color: #ff0000;
+  border: 2px solid darken(#ff0000, 7%);
+}
+
+.btn-main:hover:not(:disabled) {
+  color: $accent-color;
+  border: 2px solid $accent-color;
+}
+
+.search-button {
+  padding: .4em .6em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: .8em;
+  box-shadow: none
+}
+
+button:active, input[type=button]:active, input[type=submit]:active {
+  animation: button-click 100ms ease-out;
+}
+
+@keyframes button-click {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

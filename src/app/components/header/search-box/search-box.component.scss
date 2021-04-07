@@ -1,0 +1,87 @@
+@use '../../../../extra-styles/elevation.mixins' as *;
+@use '../../../../extra-styles/colors' as *;
+@use '../../../../extra-styles/layers' as *;
+
+:host {
+  display: block;
+  position: relative;
+  font-size: 1.3em;
+  width: 100%;
+  position: relative;
+  border-radius: .8em;
+  justify-self: center;
+  max-width: 355px;
+  @include elevation-mixin(2);
+}
+
+.shearch-entry {
+  padding: .46em .3em;
+  border: 1px solid $main-color;
+  box-shadow: 0px 0px 2px $main-color;
+  width: 100%;
+  border-radius: .8em;
+}
+.shearch-entry::placeholder {
+  color: $main-color;
+}
+
+:host(:hover) .shearch-entry {
+  border: 1px solid $accent-color;
+  box-shadow: 0px 0px 2px $accent-color;
+}
+
+:host(:hover) .shearch-entry::placeholder {
+  color: $accent-color;
+}
+
+:host(:hover) .search-button, .shearch-entry:focus ~ .search-button {
+  color: $accent-color;
+  border: 2px solid $accent-color;
+}
+
+
+.shearch-entry:focus {
+  border: 1px solid $accent-color;
+  box-shadow: 0px 0px 2px $accent-color;
+}
+
+.shearch-entry:focus::placeholder {
+  color: $accent-color;
+}
+
+.search-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $layer1;
+  background-color: white;
+  border: 1px solid $main-color;
+  border-radius: 0.8em;
+  overflow: hidden;
+  font-size: .9rem;
+  @include elevation-mixin(2);
+}
+
+.search-list > li {
+  padding: 8px 16px;
+  border-bottom: 1px solid $accent-color;
+  cursor: pointer;
+}
+
+.search-list > li:first-of-type {
+  padding-top: 16px;
+}
+
+.search-list > li:last-of-type {
+  padding-bottom: 16px;
+  border-bottom: none;
+}
+.search-list > li:hover, .search-list > li:focus {
+  background-color: $main-color;
+  color: $accent-color;
+  font-size: 500;
+}

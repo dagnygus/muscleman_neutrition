@@ -1,0 +1,11 @@
+<div class="cart-panel__total-price text-align-center">
+  <h3>Total Price: {{totalPrice}}</h3>
+</div>
+<button class="cart-panel__button clear-cart-button cursor-pointer"
+        (click)="$any(this)._onClearCartClick.emit()">
+  Clear Cart
+</button>
+<button class="cart-panel__button order-button cursor-pointer"
+        routerLink="/make-order">
+  Make Order
+</button>

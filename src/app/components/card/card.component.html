@@ -1,0 +1,58 @@
+<div class="card-header" [style.background-image]="'url(' + imageUrl + ')'">
+</div>
+<div class="card-body text-align-center">
+  <h4 class="plain-text">{{name}}</h4>
+  <span class="card-price font-weight-bold">{{price}}</span>
+  <div class="card-rating">
+    <img *ngIf="rating === 0"
+         src="assets/images/rating_star_empty.png"
+         alt="rating_star">
+    <img *ngIf="rating > 0 && rating <= 0.5"
+         src="assets/images/rating_star_half.png"
+         alt="rating_star">
+    <img *ngIf="rating > 0.5"
+         src="assets/images/rating_star_full.png"
+         alt="rating_star">
+    <img *ngIf="rating <= 1"
+         src="assets/images/rating_star_empty.png"
+         alt="rating_star">
+    <img *ngIf="rating > 1 && rating <= 1.5"
+         src="assets/images/rating_star_half.png"
+         alt="rating_star">
+    <img *ngIf="rating > 1.5"
+         src="assets/images/rating_star_full.png"
+         alt="rating_star">
+    <img *ngIf="rating <= 2"
+         src="assets/images/rating_star_empty.png"
+         alt="rating_star">
+    <img *ngIf="rating > 2 && rating <= 2.5"
+         src="assets/images/rating_star_half.png"
+         alt="rating_star">
+    <img *ngIf="rating > 2.5"
+         src="assets/images/rating_star_full.png"
+         alt="rating_star">
+    <img *ngIf="rating <= 3"
+         src="assets/images/rating_star_empty.png"
+         alt="rating_star">
+    <img *ngIf="rating > 3 && rating <= 3.5"
+         src="assets/images/rating_star_half.png"
+         alt="rating_star">
+    <img *ngIf="rating > 3.5"
+         src="assets/images/rating_star_full.png"
+         alt="rating_star">
+    <img *ngIf="rating <= 4"
+         src="assets/images/rating_star_empty.png"
+         alt="rating_star">
+    <img *ngIf="rating > 4 && rating <= 4.5"
+         src="assets/images/rating_star_half.png"
+         alt="rating_star">
+    <img *ngIf="rating > 4.5"
+         src="assets/images/rating_star_full.png"
+         alt="rating_star">
+  </div>
+</div>
+<div class="card-footer">
+  <button class="btn-link expand cursor-pointer" #basketButton>
+    <i class="fas fa-shopping-basket font-size-1c5em"></i>
+  </button>
+</div>

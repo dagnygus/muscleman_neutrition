@@ -1,0 +1,82 @@
+@use '../../../../extra-styles/elevation.mixins' as *;
+
+:host {
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  background-color: white;
+  border-radius: 16px 16px;
+  overflow: hidden;
+  @include elevation-mixin(3)
+}
+
+.card-header {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  background-color: rgb(133, 129, 129);
+}
+
+.card-body {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto min-content min-content;
+}
+
+.card-name {
+  margin-top: 6px;
+  height: calc(3em + 6px);
+  width: 100%;
+  position: relative;
+  background-color: rgb(133, 129, 129);
+}
+
+.card-price {
+  width: 30%;
+  justify-self: center;
+  height: calc(2em + 2px);
+  margin: 8px 0;
+  position: relative;
+  background-color: rgb(133, 129, 129);
+}
+
+.card-rating {
+  width: 80%;
+  justify-self: center;
+  margin-bottom: 8px;
+  background-color: rgb(133, 129, 129);
+}
+
+.card-rating-inner {
+  width: 100%;
+  padding-bottom: 20%;
+  position: relative;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0;
+  font-size: 1.3rem;
+  background-color: #bbb;
+}
+
+.card-shine {
+  position: absolute;
+  height: 100%;
+  width: 20%;
+  background-image: linear-gradient(to right, transparent, white, transparent);
+  animation: 1s infinite shine-move;
+}
+
+
+@keyframes shine-move {
+  0% {
+    left: -20%
+  }
+
+  100% {
+    left: 100%
+  }
+}

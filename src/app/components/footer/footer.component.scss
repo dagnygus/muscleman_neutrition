@@ -1,0 +1,29 @@
+@use '../../../extra-styles/colors' as *;
+@use '../../../extra-styles/elevation.mixins' as *;
+
+:host {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  color: #ddd;
+  background-color: $main-color;
+  border-top: 12px solid #bbb ;
+  text-align: center;
+
+}
+
+.footer-segment {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding-bottom: 24px;
+  @include elevation-mixin(2);
+}
+
+.footer-segment__title {
+  text-decoration: underline $accent-color;
+}
+
+.footer-segment > a {
+  margin: 6px 0;
+  font-size: 1.2em;
+}

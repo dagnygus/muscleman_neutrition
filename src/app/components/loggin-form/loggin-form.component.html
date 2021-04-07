@@ -1,0 +1,64 @@
+<div class="content-container border-top-6px-main-color height-100prc">
+  <div class="form-container">
+    <h4>
+      To sign in - complete the form
+    </h4>
+    <p>
+      If you not have an account with us,
+      please <a routerLink="/registration" class="cursor-pointer color-main-color">register</a> on the login page.
+    </p>
+    <div *ngIf="authStateManager.isSignInFailed$ | dnngAsync"
+         style="border: 2px solid red; border-radius: 12px; padding: 0 12px;">
+      <p style="color: red;">
+        Failed to logged in. Check Your password and email and try again.
+      </p>
+    </div>
+    <form class="form"
+          #logginForm="ngForm"
+          [rxwebForm]="logginForm"
+          (input)="markForCheckLocaly();"
+          (ngSubmit)="authStateManager.loggin()">
+      <div>
+        <label for="firstName">Address E-mail</label>
+        <input type="text"
+               name="email"
+               #emailInput="ngModel"
+               [(ngModel)]="authStateManager.email"
+               [rxrequired]="{ message: 'Address E-mail is required!' }"
+               [rxemail]="{ message: 'Incorect format of E-mail address!' }"
+               (blur)="markForCheckLocaly()">
+        <ng-container *ngIf="emailInput.dirty && emailInput.touched">
+          <ul>
+            <li *dnFor="let prop in emailInput.errors">
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="password">Last Name</label>
+        <input type="password"
+               name="password"
+               #passwordInput="ngModel"
+               [(ngModel)]="authStateManager.password"
+               [rxrequired]="{ message: 'Password is required!' }"
+               (blur)="markForCheckLocaly()">
+        <ng-container *ngIf="passwordInput.dirty && passwordInput.touched">
+          <ul *dnFor="let prop in passwordInput.errors">
+            <li>
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div class="flex justify-content-end gap-6px">
+        <button [disabled]="logginForm.invalid"
+                class="btn-main"
+                (click)="authStateManager.canExecuteLoggin = !!logginForm.valid;
+                         markForCheckLocaly();
+                         onSubmitButtonClicked(logginForm)" >SIGN IN</button>
+        <button class="btn-main danger" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+@use '../../../../extra-styles/colors' as *;
+@use '../../../../extra-styles/elevation.mixins' as *;
+
+:host {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto auto;
+  border-radius: 16px;
+  overflow: hidden;
+  @include elevation-mixin(3);
+  @media (min-width: 26rem) {
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 6px;
+  }
+  @media (min-width: 40rem) {
+    grid-template-columns: 2fr 3fr 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+}
+
+.cart-item__leading {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  max-width: 185px;
+}
+
+.cart-item__image {
+  padding-bottom: 100%;
+  background-position: center;
+  background-size: contain;
+  background-clip: border-box;
+  background-origin: border-box;
+  background-repeat: no-repeat;
+}
+
+.cart-item__trailing {
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 2;
+  align-self: center;
+  font-size: 1.3em;
+  padding: 0 6px;
+  @media (min-width: 26rem) {
+    grid-column: 3 / span 1;
+  }
+}
+
+.cart-item__trailing-grid {
+  display: grid;
+  gap: 6px
+}
+
+.cart-item__trailing input {
+  width: 100%;
+  padding: 4px 0;
+  border: 1px solid black;
+  text-align: center;
+  @include elevation-mixin(3);
+}
+
+.cart-item__trailing button {
+  border: none;
+  padding: 8px 0;
+  @include elevation-mixin(3);
+}
+
+.cart-item__body {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
+  text-align: center;
+  @media (min-width: 26rem) {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    text-align: left;
+  }
+}
+
+.cart-item__price {
+  background-color: #efefef;
+  grid-row: 3 / span 1;
+  grid-column: 1 / -1 ;
+  text-align: center;
+  @media (min-width: 26rem) {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+    border-radius: 16px;
+  }
+  @media (min-width: 40rem) {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 4;
+    border-radius: 16px;
+  }
+}
+
+.cart-item__delete-button-container {
+  grid-row: 2 / span 1;
+  grid-column: 2 span 1;
+  @media (min-width: 26rem) {
+    grid-row: 2 / span 1;
+    grid-column: 3 / span 1;
+    padding: 4px;
+  }
+  @media (min-width: 40rem) {
+    grid-row: 1 / span 1;
+    grid-column: 4 / span 1;
+    padding: 4px;
+  }
+}
+
+.cart-item__delete-button {
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: red;
+  font-size: 1.3em;
+  text-align: center;
+  color: white;
+  @include elevation-mixin(3);
+}

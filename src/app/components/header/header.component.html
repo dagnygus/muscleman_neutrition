@@ -1,0 +1,36 @@
+<div class="header-first-item flex justify-content-start align-items-center border-bottom-1px-accent-color">
+  <app-your-account-link>
+    <i class="fas fa-user-alt font-size-1c5em color-main-color"></i>
+    <p class="plain-text margin-left-2px cursor-pointer">Your Account</p>
+  </app-your-account-link>
+  <p class="plain-text cursor-pointer margin-left-1em">Currency</p>
+</div>
+<div class="header-second-item flex justify-content-space-between align-items-center wrap border-bottom-1px-accent-color">
+  <div class="flex align-items-center">
+    <i class="fas fa-envelope font-size-1c5em color-main-color"></i>
+    <p class="plain-text margin-left-4px cursor-pointer">contact@muscleman.com</p>
+  </div>
+  <button class="basket-box flex align-items-center color-accent-color cursor-pointer"
+          style="align-self: stretch; border: none;"
+          routerLink="/cart">
+    <i class="fas fa-shopping-basket font-size-1c5em"></i><p class="plain-text margin-left-1em">{{ cartStateManager.state?.length }} items</p>
+  </button>
+</div>
+<div class="header-thirt-item flex justify-content-center align-items-center column">
+  <img src="assets/images/muscleman_logo.png"
+       class="header__logo"
+       routerLink=""
+       style="outline: none;">
+</div>
+<div class="header__footer">
+  <!-- <div class="search-input-group">
+    <input type="text" class="shearch-entry" placeholder="Search">
+    <button type="button" class="search-button btn-main"><i class="fas fa-search"></i></button>
+  </div> -->
+  <app-search-box></app-search-box>
+  <button type="button"
+          class="btn-main width-100prc font-size-1c5em header__category-button"
+          (click)="$any(this)._categoryButtonClick.emit()">
+    <i class="fas fa-bars"></i> Categories
+  </button>
+</div>

@@ -1,0 +1,39 @@
+<span style="display: flex; align-items: center;"(click)="dropdownOpen = true; markForCheckLocaly()"><ng-content></ng-content></span>
+<div class="your-account-link__dropdown-menu-container" *ngIf="dropdownOpen">
+  <div class="your-account-link__arrow"></div>
+  <ul class="your-account-link__dropdown-men">
+    <li>
+      <p class="plain-text margin-all-8px" *ngIf="!authStateManager.isLogged">
+        Welcome to our store!
+        <span class="color-accent-color"
+              (click)="dropdownOpen = false; markForCheckLocaly()"
+              routerLink="loggin">
+          Log in
+        </span>
+        to your account or go to
+        <span class="color-accent-color"
+              routerLink='registration'
+              (click)="dropdownOpen = false; markForCheckLocaly()">
+              registration.
+        </span>
+      </p>
+      <p class="plain-text margin-all-8px" *ngIf="authStateManager.isLogged">
+        You are logged in as {{authStateManager.state?.firstName}} {{authStateManager.state?.lastName}}.
+        <span class="color-accent-color"
+              (click)="dropdownOpen = false;
+                       authStateManager.loggout()">
+          Logout.
+        </span>
+      </p>
+    </li>
+    <li>
+      <a routerLink="loggin"><i class="fas fa-lock font-size-1c5em color-main-color"></i><span>Your Account</span></a>
+    </li>
+    <li>
+      <a><i class="fas fa-shopping-basket font-size-1c5em color-main-color"></i><span>Basket</span></a>
+    </li>
+    <li>
+      <a><i class="fas fa-check-circle font-size-1c5em color-main-color"></i><span>Order</span></a>
+    </li>
+  </ul>
+</div>

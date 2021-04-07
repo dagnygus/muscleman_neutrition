@@ -1,0 +1,37 @@
+@use '../../../../extra-styles/elevation.mixins' as *;
+@use '../../../../extra-styles/colors' as *;
+
+:host {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 6px;
+  background-color: #efefef;
+  border-radius: 12px;
+  padding: 16px 2px;
+  @include elevation-mixin(3);
+  @media (min-width: 26rem) {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  @media (min-width: 34rem) {
+    grid-template-columns: 3fr 1fr 1fr;
+  }
+  @media (min-width: 49rem) {
+    grid-template-columns: 4fr 1fr 1fr;
+  }
+}
+
+.cart-panel__button {
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  color: white;
+  @include elevation-mixin(6);
+}
+
+.clear-cart-button {
+  background-color: red;
+}
+
+.order-button {
+  background-color: $main-color;
+}

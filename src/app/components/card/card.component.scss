@@ -1,0 +1,52 @@
+@use '../../../extra-styles/elevation.mixins' as *;
+
+:host {
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  background-color: white;
+  border-radius: 16px 16px;
+  overflow: hidden;
+  @include elevation-mixin(3)
+}
+
+.card-header {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-origin: border-box;
+  padding-bottom: 100%;
+}
+
+.card-body {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto min-content min-content;
+  justify-content: space-between;
+}
+
+.card-price {
+  font-size: 1.3em;
+  margin: 8px 0;
+}
+
+.card-rating {
+  width: 80%;
+  justify-self: center;
+  margin-bottom: 8px;
+}
+
+.card-rating > img {
+  width: 20%;
+  height: auto;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0;
+  font-size: 1.3rem;
+  background-color: #bbb;
+}

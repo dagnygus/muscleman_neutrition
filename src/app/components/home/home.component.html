@@ -1,0 +1,118 @@
+<app-product-modal #productModal></app-product-modal>
+
+<div class="home__head">
+    <div class="home__widget-head home__first-widget text-align-center">
+      <h1 class="width-100prc">Fast, save delivery</h1>
+    </div>
+    <div class="home__widget-body home__first-widget">
+      <div class="home__widget-image">
+        <img src="assets/images/fast_delivery_icon.png" alt="fast_delivery_icon">
+      </div>
+      <div class="home__widget-content">
+        <p class="plain-text">
+          We send the ordered products by courier within 24 hours of placing the order. Each shipment is safely and discreetly packed.
+        </p>
+      </div>
+    </div>
+    <div class="home__widget-head home__secend-widget text-align-center">
+      <h1 class="width-100prc">Only original products</h1>
+    </div>
+    <div class="home__widget-body home__secend-widget">
+      <div class="home__widget-image">
+        <img src="assets/images/certificate_icon.inkscape.png" alt="fast_delivery_icon">
+      </div>
+      <div class="home__widget-content">
+        <p class="plain-text">
+          We guarantee that all products from our offer are original because they are delivered to us directly from the manufacturers.
+        </p>
+      </div>
+    </div>
+</div>
+<div class="home__international-delivery">
+  <div class="home__flag-container">
+    <img src="assets/images/ueflag.jpg" alt="ueflag">
+  </div>
+  <p class="plain-text">
+    We deliver orders throughout Europe. We send foreign shipments via DPD or UPS. Each shipment is safely and discreetly packed.
+  </p>
+</div>
+<ng-container *ngIf="!homeStateManager.statePending else homePlaceholder">
+  <div class="flex align-items-center justify-content-center width-100%">
+    <h1>Newest</h1>
+  </div>
+  <div class="responsive-grid">
+    <app-card *ngFor="let item of homeStateManager.state?.newest"
+              [name]="item.name"
+              [imageUrl]="item.imageUrl"
+              [rating]="item.rating"
+              [price]="item.price"
+              (onCardClick)="cardClicked(item.id)"
+              (onBasketClick)="cartStateManager.addToCart({
+                               id: item.id,
+                               name: item.name,
+                               price: item.price,
+                               imageUrl: item.imageUrl,
+                               quantity: 1
+                               });
+                               productModal.open = true"
+              appScrollToUnderHeader
+              [appScrollDelay]="100"
+              class="cursor-pointer"></app-card>
+  </div>
+  <div class="flex align-items-center justify-content-center width-100%">
+    <h1>Most Popular</h1>
+  </div>
+  <div class="responsive-grid">
+    <app-card *ngFor="let item of homeStateManager.state?.mostPopular"
+              [name]="item.name"
+              [imageUrl]="item.imageUrl"
+              [rating]="item.rating"
+              [price]="item.price"
+              (onCardClick)="cardClicked(item.id)"
+              (onBasketClick)="cartStateManager.addToCart({
+                               id: item.id,
+                               name: item.name,
+                               price: item.price,
+                               imageUrl: item.imageUrl,
+                               quantity: 1
+                               });
+                               productModal.open = true"
+              appScrollToUnderHeader
+              [appScrollDelay]="100"
+              class="cursor-pointer"></app-card>
+  </div>
+  <div class="flex align-items-center justify-content-center width-100%">
+    <h1>Recomended</h1>
+  </div>
+  <div class="responsive-grid">
+    <app-card *ngFor="let item of homeStateManager.state?.recomended"
+              [name]="item.name"
+              [imageUrl]="item.imageUrl"
+              [rating]="item.rating"
+              [price]="item.price"
+              (onCardClick)="cardClicked(item.id)"
+              (onBasketClick)="cartStateManager.addToCart({
+                               id: item.id,
+                               name: item.name,
+                               price: item.price,
+                               imageUrl: item.imageUrl,
+                               quantity: 1
+                               });
+                               productModal.open = true"
+              appScrollToUnderHeader
+              [appScrollDelay]="100"
+              class="cursor-pointer"></app-card>
+  </div>
+</ng-container>
+<ng-template #homePlaceholder>
+  <div class="responsive-grid" style="margin-top: 32px;">
+    <app-card-paceholder></app-card-paceholder>
+    <app-card-paceholder></app-card-paceholder>
+    <app-card-paceholder></app-card-paceholder>
+    <app-card-paceholder></app-card-paceholder>
+    <app-card-paceholder></app-card-paceholder>
+    <app-card-paceholder></app-card-paceholder>
+    <app-card-paceholder></app-card-paceholder>
+  </div>
+</ng-template>
+

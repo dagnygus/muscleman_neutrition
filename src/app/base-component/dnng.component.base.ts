@@ -1,5 +1,5 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, NgZone, OnChanges, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { AfterViewChecked, ChangeDetectorRef, Component, Input, NgZone, OnChanges, OnDestroy } from '@angular/core';
+import { Subscription, Observable } from 'rxjs';
 
 // tslint:disable-next-line: no-conflicting-lifecycle
 @Component({
@@ -15,15 +15,29 @@ export abstract class DnngComponentBase implements AfterViewChecked, OnChanges, 
   // tslint:disable-next-line: variable-name
   private __dn_subscriptions__: Subscription[] = [];
 
+  @Input() set listenTo(value: Observable<any> | Observable<any>[]) {
+    if (value instanceof Array) {
+      value.forEach((item) => {
+        this.__dn_subscriptions__.push(item.subscribe(() => {
+          this.markForCheckLocaly();
+        }));
+      });
+    } else {
+      this.__dn_subscriptions__.push(value.subscribe(() => {
+        this.markForCheckLocaly();
+      }));
+    }
+  }
+
   // tslint:disable-next-line: variable-name
   constructor(protected _changeDetectorRef: ChangeDetectorRef,
               // tslint:disable-next-line: variable-name
               protected _ngZone: NgZone) { }
 
-  protected _detectChangesLocaly(): void {
+  markForCheckLocaly(): void {
     if (!this.__dn_marked_to_check_localy__) {
       this.__dn_marked_to_check_localy__ = true;
-      this.__dn_async_cd_subscription__ = this._ngZone.onStable.subscribe(() => {
+      this.__dn_async_cd_subscription__ = this._ngZone.onMicrotaskEmpty.subscribe(() => {
         this._changeDetectorRef.detectChanges();
         this._cancelChangeDetecton();
       });
@@ -50,7 +64,11 @@ export abstract class DnngComponentBase implements AfterViewChecked, OnChanges, 
   ngOnDestroy(): void {
     this.__dn_async_cd_subscription__?.unsubscribe();
     for (const subscription of this.__dn_subscriptions__) {
-      subscription.unsubscribe();
+      if ((subscription as any).__dn_internal_unsubscribe__) {
+        (subscription as any).__dn_internal_unsubscribe__();
+      } else {
+        subscription.unsubscribe();
+      }
     }
   }
 }

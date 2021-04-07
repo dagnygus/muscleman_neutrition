@@ -1,0 +1,130 @@
+<div class="flex justify-content-end sidedrawer__close-button">
+  <button class="btn-link font-size-2c5em cursor-pointer"
+          type="button"
+          (click)="this.open = false">
+    <i class="far fa-times-circle"></i>
+  </button>
+</div>
+<nav>
+  <ul class="sidedrawer__nav-list">
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon" src="assets/images/aminoasid_icon.png" alt="amino_icon">
+      <p class="plain-text block">Aminoacids</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.AMINOACIDS]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon" src="assets/images/fat_burners_icon.png" alt="amino_icon">
+      <p class="plain-text block">Fat burners</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.FAT_BURNERS]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon" src="assets/images/preworkout_icon.png" alt="amino_icon">
+      <p class="plain-text block">Preworkout</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.PREWORKOUT]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon" src="assets/images/regeneration_icon.png" alt="amino_icon">
+      <p class="plain-text block">Afterworkout</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.AFTERWORKOUT]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon" src="assets/images/creatin_icon.png" alt="amino_icon">
+      <p class="plain-text block">Creatine</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.CREATINE]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon" src="assets/images/sarm_icon.png" alt="amino_icon">
+      <p class="plain-text block">SARMs</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.SARMS]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon" src="assets/images/liver_protection_icon.png" alt="amino_icon">
+      <p class="plain-text block">Liver protection</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.LIVER_PROTECTION]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon" src="assets/images/health_icon.png" alt="amino_icon">
+      <p class="plain-text block">Health / Vitamins</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.HEALTH_AND_VITAMINS]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon"
+           src="assets/images/bone_joint_protection_icon.png"
+           alt="joint_protectino_icon">
+      <p class="plain-text block">Joint protection</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.JOINT_PROTECTION]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon"
+           src="assets/images/memory_and_concetration_icon.png"
+           alt="joint_protectino_icon">
+      <p class="plain-text block">Memory / Concetration</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.MEMORY_AND_CONCETRATION]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon"
+           src="assets/images/energy_icon.png"
+           alt="joint_protectino_icon">
+      <p class="plain-text block">Energy / Agitation</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.ENERGY_AND_AGITATION]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon"
+           src="assets/images/stress_icon.png"
+           alt="joint_protectino_icon">
+      <p class="plain-text block">Stress / Nerves</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.STRESS_AND_NERVES]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon"
+           src="assets/images/dream_and_relax_icon.png"
+           alt="joint_protectino_icon">
+      <p class="plain-text block">Sleep / Relax</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.SLEEP_AND_RELAX]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon"
+           src="assets/images/potencial_icon.png"
+           alt="joint_protectino_icon">
+      <p class="plain-text block">Potency / Testosterone</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.POTENCY_AND_TESTOSTERONE]"
+         (click)="open = false"></a>
+    </li>
+    <li class="sidedrawer__nav-item flex align-items-center position-relative">
+      <img class="sidedrawer__nav-link-icon"
+           src="assets/images/libido_icon.png"
+           alt="joint_protectino_icon">
+      <p class="plain-text block">Libido in woman</p>
+      <a class="position-absolute top-0 left-0 expand"
+         [routerLink]="['products', routeNames.LIBIDO_IN_WOMAN]"
+         (click)="open = false"></a>
+    </li>
+  </ul>
+</nav>

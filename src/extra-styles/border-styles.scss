@@ -1,0 +1,13 @@
+@use './colors' as *;
+
+.border-bottom-1px-accent-color {
+  border-bottom: 1px solid $accent-color;
+}
+
+.border-bottom-3px-main-color {
+  border-bottom: 4px solid $main-color;
+}
+
+.border-top-6px-main-color {
+  border-top: 6px solid $main-color;
+}

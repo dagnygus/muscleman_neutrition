@@ -1,0 +1,40 @@
+@use '../extra-styles/elevation.mixins' as *;
+
+.form {
+  display: grid;
+  grid-template-rows: auto;
+  width: 96%;
+  margin: 16px auto;
+  row-gap: 12px;
+}
+
+.form label {
+  display: block;
+}
+
+.form input[type=text],
+.form input[type=password],
+.form select {
+  font-size: 1rem;
+  width: 100%;
+  padding: .3rem 4px;
+  border: 1px solid black;
+  outline: none;
+  @include elevation-mixin(3);
+}
+
+.form ul {
+  color: red;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+input.ng-touched.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 410px;
+  margin: 0 auto
+}

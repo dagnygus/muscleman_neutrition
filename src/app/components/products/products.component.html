@@ -1,0 +1,32 @@
+<app-product-modal #productModal></app-product-modal>
+
+<ng-container *ngIf="productsStateManager.statePending else itemsTemplate">
+  <app-card-paceholder></app-card-paceholder>
+  <app-card-paceholder></app-card-paceholder>
+  <app-card-paceholder></app-card-paceholder>
+  <app-card-paceholder></app-card-paceholder>
+  <app-card-paceholder></app-card-paceholder>
+  <app-card-paceholder></app-card-paceholder>
+</ng-container>
+
+<ng-template #itemsTemplate>
+  <ng-container *ngFor="let item of productsStateManager.state; trackBy: productsStateManager.trackFn">
+    <app-card [name]="item.name"
+              [rating]="item.rating"
+              [imageUrl]="item.imageUrl"
+              [price]="item.price"
+              class="cursor-pointer"
+              (onCardClick)="navigateToSelectedProduct(item.id)"
+              (onBasketClick)="cartStateManager.addToCart({
+                               id: item.id,
+                               name: item.name,
+                               price: item.price,
+                               imageUrl: item.imageUrl,
+                               quantity: 1
+                               });
+                               productModal.open = true"
+              appScrollToUnderHeader
+              [appScrollDelay]="100"></app-card>
+  </ng-container>
+</ng-template>
+

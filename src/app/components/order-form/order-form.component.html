@@ -1,0 +1,103 @@
+<div class="content-container border-top-6px-main-color">
+  <div class="form-container">
+    <h4 class="text-align-center">
+      To make order - complete the form
+    </h4>
+    <form #orderForm="ngForm"
+          class="form"
+          [rxwebForm]="orderForm"
+          (input)="markForCheckLocaly()"
+          (ngSubmit)="onSubmitForm()">
+      <div>
+        <label for="country">Counrty</label>
+        <input type="text"
+               name="country"
+               #countryInput="ngModel"
+               [(ngModel)]="orderStateManager.country"
+               [rxrequired]="{ message: 'Country is required!' }"
+               [rxalpha]="{ message: 'Country must contain alphabethic letters!' }"
+               (blur)="markForCheckLocaly()"/>
+        <ng-container *ngIf="countryInput.touched && countryInput.dirty">
+          <ul>
+            <li *dnFor="let prop in countryInput.errors">
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="city">City</label>
+        <input type="text"
+               name="city"
+               #cityInput="ngModel"
+               [(ngModel)]="orderStateManager.city"
+               [rxrequired]="{ message: 'City is required!' }"
+               [rxalpha]="{ message: 'City must contain alphabethic letters!' }"/>
+        <ng-container *ngIf="countryInput.touched && countryInput.dirty">
+          <ul>
+            <li *dnFor="let prop in cityInput.errors">
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="street">Street</label>
+        <input type="text"
+               name="street"
+               #streetInput="ngModel"
+               [(ngModel)]="orderStateManager.street"
+               [rxrequired]="{ message: 'Street is required!' }"/>
+        <ng-container *ngIf="countryInput.touched && countryInput.dirty">
+          <ul>
+            <li *dnFor="let prop in streetInput.errors">
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="zipCode">Zip Code</label>
+        <input type="text"
+               name="zipCode"
+               #zipCodeInput="ngModel"
+               [(ngModel)]="orderStateManager.zipCode"
+               [rxrequired]="{ message: 'Zip code is required!' }"/>
+        <ng-container *ngIf="countryInput.touched && countryInput.dirty">
+          <ul>
+            <li *dnFor="let prop in zipCodeInput.errors">
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="courier">Courier</label>
+        <select name="courier"
+                #courierInput="ngModel"
+                [(ngModel)]="orderStateManager.courier">
+          <option value="dpd">DPD</option>
+          <option value="inpost">InPost</option>
+          <option value="paczkomaty">Paczkomaty</option>
+          <option value="ups">ups</option>
+        </select>
+      </div>
+      <div>
+        <label for="paymentMethod">Payment Method</label>
+        <select name="paymentMethod"
+                #paymentInput="ngModel"
+                [(ngModel)]="orderStateManager.paymentMethod">
+          <option value="cash_on_delivery">Cash on delivery</option>
+          <option value="by_bank_transfer">By bank transfer</option>
+        </select>
+      </div>
+      <div class="flex justify-content-end gap-6px">
+        <button [disabled]="orderForm.invalid"
+                class="btn-main"
+                (click)="markForCheckLocaly();
+                         onSubmitButtonClicked(orderForm)" >Order Now</button>
+        <button class="btn-main danger" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

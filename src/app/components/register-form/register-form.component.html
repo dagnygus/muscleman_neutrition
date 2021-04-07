@@ -1,0 +1,110 @@
+<div class="content-container border-top-6px-main-color" (dnngOnDestroy)="authStateManager.clearFields()">
+  <div class="form-container">
+    <h4>
+      To create an account - complete the form
+    </h4>
+    <p>
+      If you already have an account with us, please log in on the login page.
+    </p>
+    <form class="form"
+          #registerForm="ngForm"
+          [rxwebForm]="registerForm"
+          (input)="markForCheckLocaly()"
+          (ngSubmit)="authStateManager.registerUser()">
+      <div>
+        <label for="firstName">First Name</label>
+        <input type="text"
+               name="firstName"
+               #nameInput="ngModel"
+               (blur)="markForCheckLocaly()"
+               [(ngModel)]="authStateManager.firstName"
+               [rxrequired]="{ message: 'First name is required!' }"
+               [rxalpha]="{ message: 'First name must contain alphabethic letters!' }">
+        <ng-container *ngIf="nameInput.touched && nameInput.dirty">
+          <ul>
+            <li *dnFor="let prop in nameInput.errors">
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="lastName">Last Name</label>
+        <input type="text"
+               name="lastName"
+               #lastNameInput="ngModel"
+               [(ngModel)]="authStateManager.lastName"
+               [rxrequired]="{ message: 'Last name is required!' }"
+               [rxalpha]="{ message: 'Last name must contain alphabetic letters!' }">
+        <ng-container *ngIf="lastNameInput.touched && lastNameInput.dirty">
+          <ul *dnFor="let prop in lastNameInput.errors">
+            <li>
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="email">Address E-mail</label>
+        <input type="text"
+               name="email"
+               #emailInput="ngModel"
+               (blur)="markForCheckLocaly()"
+               [(ngModel)]="authStateManager.email"
+               [rxrequired]="{ message: 'Address email is required' }"
+               [rxemail]="{ message: 'Incorrect format of E-mail address' }">
+        <ng-container *ngIf="emailInput.touched && emailInput.dirty">
+          <ul>
+            <li *dnFor="let prop in emailInput.errors">
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password"
+               name="password"
+               #passwordInput="ngModel"
+               (blur)="markForCheckLocaly()"
+               [(ngModel)]="authStateManager.password"
+               [rxrequired]="{ message: 'Password is required' }">
+        <ng-container *ngIf="passwordInput.touched && passwordInput.dirty">
+          <ul>
+            <li *dnFor="let prop in passwordInput.errors">
+              <small>{{ prop.message }}</small>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+      <div>
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password"
+               name="confirmPassword"
+               #confirmPasswordInput="ngModel"
+               (blur)="markForCheckLocaly()"
+               [(ngModel)]="authStateManager.confirmPassword"
+               [rxcompare]="{ fieldName: 'password', message: 'Passwords not match!' }"
+               [rxrequired]="{ message: 'Confirm password is required!' }">
+          <ng-container *ngIf="confirmPasswordInput.touched && confirmPasswordInput.dirty">
+            <ul>
+              <li *dnFor="let prop in confirmPasswordInput.errors">
+                <small>{{ prop.message }}</small>
+              </li>
+            </ul>
+          </ng-container>
+      </div>
+      <div class="flex justify-content-end gap-6px">
+        <button [disabled]="!registerForm.valid"
+                class="btn-main"
+                (click)="authStateManager.canExecuteRegisterUser = !!registerForm.valid;
+                         markForCheckLocaly();
+                         onSubmitButtonClicked(registerForm)"
+                appScrollToUnderHeader
+                [appAllawScrolling]="registerForm.valid"
+                [appScrollDelay]="100">Register Account</button>
+        <button class="btn-main danger" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

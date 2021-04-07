@@ -1,0 +1,19 @@
+<input type="text"
+       class="shearch-entry"
+       placeholder="Search"
+       [(ngModel)]="searchBoxStateManager.searchKey"
+       #searchInput>
+<button type="button"
+        class="search-button btn-main"
+        [disabled]="!(this.searchBoxStateManager.searchKey !== '' && loadedId)"
+        (click)="navigateTo()">
+  <i class="fas fa-search"></i>
+</button>
+<ul class="search-list" *ngIf="searchBoxStateManager.state!.length > 0">
+  <li tabindex="0"
+      *ngFor="let item of searchBoxStateManager.state"
+      (keyup)="keyUp($event.key, item.id, item.name)"
+      (click)="itemClicked(item.id, item.name)">
+    {{ item.name }}
+  </li>
+</ul>

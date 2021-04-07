@@ -1,0 +1,19 @@
+<div class="product-modal__modal flex column">
+  <div class="mark flex width-100prc align-items-center justify-content-center">
+    <span><i class="fas fa-check"></i></span>
+  </div>
+  <div class="product-modal__info width-100prc">
+    <p class="plain-text">
+      <span class="color-accent-color">Success:</span> You have added <span class="color-main-color">Creatine HCL 300g</span> to your cart !
+      Congratulations! You have received Free Shipping by DPD or InPost.
+    </p>
+  </div>
+  <div class="width-100prc poduct-modal__buttons flex justify-content-center gap-6px">
+    <button (click)="open = false">
+      <i class="fas fa-arrow-circle-left"></i> Continue Shopping
+    </button>
+    <button routerLink="/cart">
+      <i class="fas fa-shopping-cart"></i> Order Now
+    </button>
+  </div>
+</div>

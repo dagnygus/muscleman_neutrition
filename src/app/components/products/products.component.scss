@@ -1,0 +1,10 @@
+:host {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  width: 95%;
+  margin: 16px auto;
+  gap: 6px;
+  @media (min-width: 49rem) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
