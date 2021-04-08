@@ -9,12 +9,6 @@ export type DeepReadonly<T> = T extends Array<infer U1> ? ReadonlyArray<U1> : {
                                   DeepReadonly<T[Property]>
 };
 
-interface StateManagerCommand<TParam = void> {
-  (parameter?: TParam): void;
-  canExecute: boolean;
-  onCanExecuteChanged$: Observable<void>;
-}
-
 @Directive()
 // tslint:disable-next-line: directive-class-suffix
 export abstract class DnngStateManager<T extends object> implements OnDestroy {

@@ -1,18 +1,13 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, Input, NgZone, OnChanges, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 
-// tslint:disable-next-line: no-conflicting-lifecycle
 @Component({
   template: ''
 })
 // tslint:disable-next-line: component-class-suffix
 export abstract class DnngComponentBase implements AfterViewChecked, OnChanges, OnDestroy {
-
-  // tslint:disable-next-line: variable-name
   private __dn_async_cd_subscription__: Subscription | null = null;
-  // tslint:disable-next-line: variable-name
   private __dn_marked_to_check_localy__ = false;
-  // tslint:disable-next-line: variable-name
   private __dn_subscriptions__: Subscription[] = [];
 
   @Input() set listenTo(value: Observable<any> | Observable<any>[]) {
@@ -29,9 +24,7 @@ export abstract class DnngComponentBase implements AfterViewChecked, OnChanges, 
     }
   }
 
-  // tslint:disable-next-line: variable-name
   constructor(protected _changeDetectorRef: ChangeDetectorRef,
-              // tslint:disable-next-line: variable-name
               protected _ngZone: NgZone) { }
 
   markForCheckLocaly(): void {

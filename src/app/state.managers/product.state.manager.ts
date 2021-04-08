@@ -40,7 +40,7 @@ export class SingleProductStateManager extends DnngStateManager<ProductModel> {
   provideInitialState(): Observable<ProductModel> | null {
     if (this._productId) {
       return this._http.get<ProductModel>(this._baseUrl + this._productId)
-        .pipe(first(), delay(2000));
+        .pipe(first());
     }
     return null;
   }
