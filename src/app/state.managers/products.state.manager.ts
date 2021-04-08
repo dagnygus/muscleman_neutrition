@@ -1,4 +1,4 @@
-import { delay, first } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ProductItemModel } from '../models/product-item-model';
 import { DnngStateManager } from '../base-state-manager/dnng.state.manager';
@@ -45,7 +45,7 @@ export class ProductsStateManager extends DnngStateManager<ProductItemModel[]> {
 
   protected provideInitialState(): Observable<ProductItemModel[]> | null  {
     if (this._url) {
-      return this._http.get<ProductItemModel[]>(this._url).pipe(delay(2000), first());
+      return this._http.get<ProductItemModel[]>(this._url).pipe(first());
     }
     return null;
   }
@@ -70,7 +70,7 @@ export class ProductsStateManager extends DnngStateManager<ProductItemModel[]> {
     this._fetchingData$.next(this._fetchingData);
     this.notifyChanges();
     // tslint:disable-next-line: no-non-null-assertion
-    this._subscription = this._http.get<ProductItemModel[]>(this._url!).pipe(delay(2000)).listen(this, {
+    this._subscription = this._http.get<ProductItemModel[]>(this._url!).listen(this, {
       next: (products) => {
         this.writableState = products;
         this._fetchingData = false;

@@ -64,7 +64,6 @@ export class SingleProductStateManager extends DnngStateManager<ProductModel> {
     this._fetchingProduct$.next(true);
 
     this._subscription = this._http.get<ProductModel>(this._baseUrl + this._productId)
-      .pipe(delay(2000))
       .listen(this, (product) => {
         this.writableState = product;
         this._fetchingProduct = false;

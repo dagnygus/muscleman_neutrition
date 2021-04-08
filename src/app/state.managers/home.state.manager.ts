@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, zip } from 'rxjs';
 import { DnngStateManager } from '../base-state-manager/dnng.state.manager';
-import { delay, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 export interface HomeStateItem {
   id: string;
@@ -27,7 +27,6 @@ export class HomeStateManager extends DnngStateManager<HomeProductsModel> {
     const source3$ = this._http.get<ProductItemModel[]>('assets/products-data/recomended.json');
 
     const mainSource$ = zip(source1$, source2$, source3$).pipe(
-      delay(2000),
       map(([newest, mostPopular, recomended]) => ({ newest, mostPopular, recomended }) )
     );
 
