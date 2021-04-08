@@ -33,7 +33,7 @@
                [(ngModel)]="orderStateManager.city"
                [rxrequired]="{ message: 'City is required!' }"
                [rxalpha]="{ message: 'City must contain alphabethic letters!' }"/>
-        <ng-container *ngIf="countryInput.touched && countryInput.dirty">
+        <ng-container *ngIf="cityInput.touched && cityInput.dirty">
           <ul>
             <li *dnFor="let prop in cityInput.errors">
               <small>{{ prop.message }}</small>
@@ -48,7 +48,7 @@
                #streetInput="ngModel"
                [(ngModel)]="orderStateManager.street"
                [rxrequired]="{ message: 'Street is required!' }"/>
-        <ng-container *ngIf="countryInput.touched && countryInput.dirty">
+        <ng-container *ngIf="streetInput.touched && streetInput.dirty">
           <ul>
             <li *dnFor="let prop in streetInput.errors">
               <small>{{ prop.message }}</small>
@@ -63,7 +63,7 @@
                #zipCodeInput="ngModel"
                [(ngModel)]="orderStateManager.zipCode"
                [rxrequired]="{ message: 'Zip code is required!' }"/>
-        <ng-container *ngIf="countryInput.touched && countryInput.dirty">
+        <ng-container *ngIf="zipCodeInput.touched && zipCodeInput.dirty">
           <ul>
             <li *dnFor="let prop in zipCodeInput.errors">
               <small>{{ prop.message }}</small>
