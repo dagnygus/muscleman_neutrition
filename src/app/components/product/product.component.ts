@@ -24,13 +24,7 @@ export class ProductComponent extends DnngComponentBase implements OnInit {
   ngOnInit(): void {
     this.singleProductStateManager.onChanged.listen(this, () => {
       this.markForCheckLocaly();
-    });
-    this._activatedRoute.paramMap.listen(this, paramMap => {
-      this.singleProductStateManager.productId = paramMap.get('id');
-      this.singleProductStateManager.fetchProduct();
-    });
-    this.singleProductStateManager.stateInitialized$.listen(this, (value) => {
-      if (value && this.singleProductStateManager.state) {
+      if (this.singleProductStateManager.stateInitialized && this.singleProductStateManager.state) {
         this.cartStateManager.selectedProduct = {
           id: this.singleProductStateManager.state.id,
           name: this.singleProductStateManager.state.name,
@@ -39,6 +33,10 @@ export class ProductComponent extends DnngComponentBase implements OnInit {
           quantity: 1
         };
       }
+    });
+    this._activatedRoute.paramMap.listen(this, paramMap => {
+      this.singleProductStateManager.productId = paramMap.get('id');
+      this.singleProductStateManager.fetchProduct();
     });
     this.singleProductStateManager.initialize();
     this.cartStateManager.initialize();

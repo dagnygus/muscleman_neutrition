@@ -1,9 +1,5 @@
-export interface ProductModel {
-  id: string;
-  name: string;
-  imageUrl: string;
-  price: string;
-  rating: number;
+import { ProductItemModel } from './product-item-model';
+export interface ProductModel extends ProductItemModel {
   description: string;
   ingredients: string[];
 }
