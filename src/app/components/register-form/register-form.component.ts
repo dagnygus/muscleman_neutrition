@@ -24,7 +24,7 @@ export class RegisterFormComponent extends DnngComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authStateManager.initialize();
+    this.authStateManager.init();
     this.authStateManager.onChanged.listen(this, () => {
       if (this.authStateManager.isLogged) {
         this.router.navigate(['']);

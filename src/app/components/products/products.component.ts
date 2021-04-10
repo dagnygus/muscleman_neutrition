@@ -23,20 +23,15 @@ export class ProductsComponent extends DnngComponentBase implements OnInit {
               private _router: Router) {
     super(cd, ngz);
   }
+
   ngOnInit(): void {
-    this.productsStateManager.url = routeMap.get(this._activatedRoute.snapshot.paramMap.get('category'));
-    if (this.productsStateManager.stateInitialized) {
-      this.productsStateManager.fetchData();
-    }
-    this._activatedRoute.paramMap.pipe(skip(1)).listen(this, paramMap => {
+    this._activatedRoute.paramMap.pipe().listen(this, paramMap => {
       this.productsStateManager.url = routeMap.get(paramMap.get('category'));
-      this.productsStateManager.fetchData();
+      this.productsStateManager.load();
     });
     this.productsStateManager.onChanged.listen(this, () => {
       this.markForCheckLocaly();
     });
-    this.productsStateManager.initialize();
-    this.cartStateManager.initialize();
   }
 
   navigateToSelectedProduct(id: string): void {

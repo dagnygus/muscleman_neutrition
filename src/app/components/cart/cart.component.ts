@@ -20,6 +20,6 @@ export class CartComponent extends DnngComponentBase implements OnInit {
     this.cartStateManager.onChanged.listen(this, () => {
       this.markForCheckLocaly();
     });
-    this.cartStateManager.initialize();
+    this.cartStateManager.init();
   }
 }

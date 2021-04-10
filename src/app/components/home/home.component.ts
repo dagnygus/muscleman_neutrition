@@ -20,8 +20,8 @@ export class HomeComponent extends DnngComponentBase implements OnInit {
     super(cd, ngz);
   }
   ngOnInit(): void {
-    this.cartStateManager.initialize();
-    this.homeStateManager.initialize();
+    this.cartStateManager.init();
+    this.homeStateManager.init();
     this.homeStateManager.onChanged.listen(this, () => {
       this.markForCheckLocaly();
     });

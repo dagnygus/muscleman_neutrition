@@ -24,14 +24,14 @@ export abstract class DnngComponentBase implements AfterViewChecked, OnChanges, 
     }
   }
 
-  constructor(protected _changeDetectorRef: ChangeDetectorRef,
-              protected _ngZone: NgZone) { }
+  constructor(protected changeDetectorRef: ChangeDetectorRef,
+              protected ngZone: NgZone) { }
 
   markForCheckLocaly(): void {
     if (!this.__dn_marked_to_check_localy__) {
       this.__dn_marked_to_check_localy__ = true;
-      this.__dn_async_cd_subscription__ = this._ngZone.onMicrotaskEmpty.subscribe(() => {
-        this._changeDetectorRef.detectChanges();
+      this.__dn_async_cd_subscription__ = this.ngZone.onMicrotaskEmpty.subscribe(() => {
+        this.changeDetectorRef.detectChanges();
         this._cancelChangeDetecton();
       });
     }
@@ -46,12 +46,12 @@ export abstract class DnngComponentBase implements AfterViewChecked, OnChanges, 
   }
 
   ngOnChanges(): void {
-    this._changeDetectorRef.reattach();
+    this.changeDetectorRef.reattach();
     this._cancelChangeDetecton();
   }
 
   ngAfterViewChecked(): void {
-    this._changeDetectorRef.detach();
+    this.changeDetectorRef.detach();
   }
 
   ngOnDestroy(): void {

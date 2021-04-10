@@ -20,7 +20,7 @@ export class OrderFormComponent extends DnngComponentBase implements OnInit {
     super(cd, ngz);
   }
   ngOnInit(): void {
-    this.orderStateManager.initialize();
+    this.orderStateManager.init();
   }
 
   onSubmitButtonClicked(form: NgForm): void {

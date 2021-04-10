@@ -23,7 +23,7 @@ export class LogginFormComponent extends DnngComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authStateManager.initialize();
+    this.authStateManager.init();
     this.authStateManager.onChanged.listen(this, () => {
       if (this.authStateManager.isLogged) {
         this.router.navigate(['']);
@@ -34,7 +34,7 @@ export class LogginFormComponent extends DnngComponentBase implements OnInit {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       const mainHeader = document.getElementById('main_header') as HTMLElement;
-      this._ngZone.runOutsideAngular(() => {
+      this.ngZone.runOutsideAngular(() => {
         setTimeout(() => {
           window.scrollTo({
             top: mainHeader.offsetHeight,

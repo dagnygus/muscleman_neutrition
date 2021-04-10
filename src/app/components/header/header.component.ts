@@ -23,10 +23,9 @@ export class HeaderComponent extends DnngComponentBase implements OnInit {
 
   ngOnInit(): void {
     this.cartStateManager.onChanged.listen(this, () => {
-      console.log('items in header: ' + this.cartStateManager.state?.length);
       this.markForCheckLocaly();
     });
-    this.cartStateManager.initialize();
+    this.cartStateManager.init();
   }
 
 }

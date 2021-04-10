@@ -18,7 +18,7 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
   private __dn_subscriptions__: Subscription[] = [];
   private __dn_state_pending__ = false;
   private __dn_state_pending$__ = new BehaviorSubject<boolean>(false);
-  private __dn_state_subcription__: Subscription | null = null;
+  private __dn_state_subscription__: Subscription | null = null;
   private __dn_failed_to_initial_state__: boolean | null = null;
   private __dn_failed_to_initial_state$__ = new BehaviorSubject<boolean | null>(null);
   private __dn_state_initialized__ = false;
@@ -35,14 +35,14 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
     return this.__dn_state_initialized__;
   }
   get stateInitialized$(): Observable<boolean> {
-    return this.__dn_state_initialized$__.asObservable();
+    return this.__dn_state_initialized$__
   }
 
   get statePending(): boolean {
     return this.__dn_state_pending__;
   }
   get statePending$(): Observable<boolean> {
-    return this.__dn_state_pending$__.asObservable();
+    return this.__dn_state_pending$__
   }
 
   get failedToInitialState(): boolean | null {
@@ -83,8 +83,8 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
       value: this.__dn_state_pending$__,
       enumerable: false,
     });
-    Object.defineProperty(this, '__dn_state_subcription__', {
-      value: this.__dn_state_subcription__,
+    Object.defineProperty(this, '__dn_state_subscription__', {
+      value: this.__dn_state_subscription__,
       enumerable: false,
       writable: true,
     });
@@ -119,15 +119,25 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
 
   protected abstract provideInitialState(): T | Observable<T> | null;
 
-  initialize(): void {
+  init(): void {
     if (!this.__dn_state_manager_initialized__) {
       this.__dn_state_manager_initialized__ = true;
       this.__dn_initial_state__();
     }
   }
 
+  load(): void {
+    if (this.__dn_state_initialized__) {
+      this.notifyChanges();
+    }
+    this.__dn_state_manager_initialized__ = true;
+    this.__dn_state_initialized__ = false;
+    this.__dn_state_initialized$__.next(false);
+    this.__dn_initial_state__();
+  }
+
   ngOnDestroy(): void {
-    this.__dn_state_subcription__?.unsubscribe();
+    this.__dn_state_subscription__?.unsubscribe();
     for (const subscription of this.__dn_subscriptions__) {
       (subscription as any).__dn_internal_unsubscribe__();
     }
@@ -149,8 +159,8 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
   }
 
   protected cancelProvidingState(): void {
-    if (this.__dn_state_subcription__ && this.__dn_state_pending__) {
-      this.__dn_state_subcription__.unsubscribe();
+    if (this.__dn_state_subscription__ && this.__dn_state_pending__) {
+      this.__dn_state_subscription__.unsubscribe();
     }
   }
 
@@ -159,7 +169,9 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
 
     if (initialState instanceof Observable) {
       this.__dn_state_pending__ = true;
-      this.__dn_state_subcription__ = initialState.subscribe({
+      this.__dn_state_pending$__.next(true);
+      this.__dn_state_subscription__?.unsubscribe();
+      this.__dn_state_subscription__ = initialState.subscribe({
         next: (providedSate) => {
           this.writableState = providedSate;
           this.__dn_state_pending__ = false;
@@ -174,7 +186,7 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
           this.__dn_failed_to_initial_state__ = true;
           this.__dn_failed_to_initial_state$__.next(this.failedToInitialState);
           this.notifyChanges();
-          this.__dn_state_subcription__?.unsubscribe();
+          this.__dn_state_subscription__?.unsubscribe();
         },
         complete: () => {
           if (!this.writableState) {
@@ -184,7 +196,7 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
             this.__dn_failed_to_initial_state$__.next(this.failedToInitialState);
             this.notifyChanges();
           }
-          this.__dn_state_subcription__?.unsubscribe();
+          this.__dn_state_subscription__?.unsubscribe();
         }
       });
       return;

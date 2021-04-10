@@ -1,3 +1,4 @@
+import { skip } from 'rxjs/operators';
 import { CartStateManager } from '../../state.managers/cart.state.manager';
 import { ActivatedRoute } from '@angular/router';
 import { SingleProductStateManager } from '../../state.managers/product.state.manager';
@@ -36,10 +37,9 @@ export class ProductComponent extends DnngComponentBase implements OnInit {
     });
     this._activatedRoute.paramMap.listen(this, paramMap => {
       this.singleProductStateManager.productId = paramMap.get('id');
-      this.singleProductStateManager.fetchProduct();
+      this.singleProductStateManager.load();
     });
-    this.singleProductStateManager.initialize();
-    this.cartStateManager.initialize();
+    this.cartStateManager.init();
   }
 
 }

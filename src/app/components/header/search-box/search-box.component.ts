@@ -31,7 +31,7 @@ export class SearchBoxComponent extends DnngComponentBase implements OnInit, Aft
     this.searchBoxStateManager.onChanged.listen(this, () => {
       this.markForCheckLocaly();
     });
-    this.searchBoxStateManager.initialize();
+    this.searchBoxStateManager.init();
   }
 
   ngAfterViewInit(): void {

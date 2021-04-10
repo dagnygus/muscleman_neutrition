@@ -21,8 +21,8 @@ export class OrderSuccessComponent extends DnngComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartStateManager.initialize();
-    this.orderStateManager.initialize();
+    this.cartStateManager.init();
+    this.orderStateManager.init();
     setTimeout(() => {
       this.cartStateManager.clearCart();
       this.orderStateManager.resetFields();

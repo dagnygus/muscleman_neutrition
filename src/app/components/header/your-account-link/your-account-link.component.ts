@@ -22,7 +22,7 @@ export class YourAccountLinkComponent extends DnngComponentBase implements OnIni
     this.authStateManager.onChanged.listen(this, () => {
       this.markForCheckLocaly();
     });
-    this.authStateManager.initialize();
+    this.authStateManager.init();
   }
 
   @HostListener('body:click', ['$event.target'])
