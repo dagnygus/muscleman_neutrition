@@ -2,7 +2,7 @@ import { first } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ProductItemModel } from '../models/product-item-model';
 import { DnngStateManager } from '../base-state-manager/dnng.state.manager';
-import { BehaviorSubject, Observable, merge } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable()

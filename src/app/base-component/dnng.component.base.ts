@@ -32,12 +32,12 @@ export abstract class DnngComponentBase implements AfterViewChecked, OnChanges, 
       this.__dn_marked_to_check_localy__ = true;
       this.__dn_async_cd_subscription__ = this.ngZone.onMicrotaskEmpty.subscribe(() => {
         this.changeDetectorRef.detectChanges();
-        this._cancelChangeDetecton();
+        this.cancelChangeDetecton();
       });
     }
   }
 
-  protected _cancelChangeDetecton(): void {
+  protected cancelChangeDetecton(): void {
     if (this.__dn_marked_to_check_localy__) {
       this.__dn_marked_to_check_localy__ = false;
       this.__dn_async_cd_subscription__?.unsubscribe();
@@ -47,7 +47,7 @@ export abstract class DnngComponentBase implements AfterViewChecked, OnChanges, 
 
   ngOnChanges(): void {
     this.changeDetectorRef.reattach();
-    this._cancelChangeDetecton();
+    this.cancelChangeDetecton();
   }
 
   ngAfterViewChecked(): void {
