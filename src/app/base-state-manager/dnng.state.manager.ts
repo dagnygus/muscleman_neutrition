@@ -128,11 +128,11 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
 
   load(): void {
     if (this.__dn_state_initialized__) {
+      this.__dn_state_initialized__ = false;
+      this.__dn_state_initialized$__.next(false);
       this.notifyChanges();
     }
     this.__dn_state_manager_initialized__ = true;
-    this.__dn_state_initialized__ = false;
-    this.__dn_state_initialized$__.next(false);
     this.__dn_initial_state__();
   }
 
