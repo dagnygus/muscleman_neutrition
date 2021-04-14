@@ -110,7 +110,8 @@
         "check-format",
         "allow-pascal-case",
         "allow-leading-underscore",
-        "allow-trailing-underscore"
+        "allow-trailing-underscore",
+        "allow-snake-case"
       ]
     },
     "whitespace": {

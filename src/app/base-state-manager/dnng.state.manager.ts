@@ -35,14 +35,14 @@ export abstract class DnngStateManager<T extends object> implements OnDestroy {
     return this.__dn_state_initialized__;
   }
   get stateInitialized$(): Observable<boolean> {
-    return this.__dn_state_initialized$__
+    return this.__dn_state_initialized$__;
   }
 
   get statePending(): boolean {
     return this.__dn_state_pending__;
   }
   get statePending$(): Observable<boolean> {
-    return this.__dn_state_pending$__
+    return this.__dn_state_pending$__;
   }
 
   get failedToInitialState(): boolean | null {
