@@ -26,8 +26,11 @@ export class ProductsComponent extends DnngComponentBase implements OnInit {
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.pipe().listen(this, paramMap => {
-      this.productsStateManager.url = routeMap.get(paramMap.get('category'));
-      this.productsStateManager.load();
+      const url = routeMap.get(paramMap.get('category'));
+      if (url !== this.productsStateManager.url) {
+        this.productsStateManager.url = url;
+        this.productsStateManager.load();
+      }
     });
     this.productsStateManager.onChanged.listen(this, () => {
       this.markForCheckLocaly();
